@@ -2,14 +2,27 @@
 import React from 'react'
 import { useCateStore } from '@/store/module/company'
 import { Button } from '@/components/ui/button'
+import {  usePathname, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+
+
 const PCate = () => {
     const cateList = useCateStore((state) => state.cateList)
-    const defaultCate = useCateStore((state) => state.defaultCate)
-    const setDefaultCate = useCateStore((state) => state.setDefaultCate)
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
 
     const jumpTo = (cateId: string) => {
-        setDefaultCate(cateId)
+        router.push(`/product/${cateId}`)
     }
+
+    const isActive = (cateId: string) => {
+      if (pathname.startsWith(`/product/detail`)) {
+        return cateId === searchParams.get('cate')
+      }
+      return pathname === `/product/${cateId}`
+    }
+
 
     return (
         <div className="flex flex-col max-h-[80vh] overflow-y-auto">
@@ -19,7 +32,7 @@ const PCate = () => {
                     <Button
                         key={item.id}
                         variant="link"
-                        className={`text-black hover:bg-gray-100 ${defaultCate === item.id ? 'bg-gray-100 font-bold' : ''}`}
+                        className={`text-black hover:bg-gray-100 ${isActive(item.id) ? 'bg-gray-100 font-bold' : ''}`}
                         onClick={() => jumpTo(item.id)}
                     >
                         {item.name}

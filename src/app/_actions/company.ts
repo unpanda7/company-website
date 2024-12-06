@@ -92,3 +92,21 @@ export async function getProductList({
     total
   }
 }
+
+export async function getProductDetail(id: string) {
+  const product = await prisma.product.findUnique({
+    where: { id },
+    include: {
+      categories: {
+        include: {
+          category: {
+            select: {
+              name: true
+            }
+          }
+        }
+      }
+    }
+  })
+  return productSchema.parse(product)
+}

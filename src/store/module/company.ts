@@ -24,11 +24,8 @@ export const useCateStore = create<CateState>((set) => ({
   cateList: [],
   defaultCate: '',
   setCateList: (cateList) => set({ cateList }),
-  setDefaultCate: async (defaultCate: string) => {
+  setDefaultCate: (defaultCate: string) => {
     set({ defaultCate })
-    const { productList, total } = await getProductListByCate({ cateId: defaultCate, page: 1, pageSize: 10 })
-    useProductStore.getState().setProductList(productList)
-    useProductStore.getState().setTotal(total)
   },
 }))
 

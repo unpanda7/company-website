@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import PHeader from "@/components/PHeader";
-import PNav from "@/components/PNav";
+import PNav from "@/components/portal/PNav";
 import CompanyProvider from "@/components/providers/CompanyProvider";
 import { getCompanyInfo, getCateList } from "@/app/_actions/company";
-
+import PFooter from "@/components/portal/PFooter";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -69,6 +69,7 @@ export default async function RootLayout({
           <PHeader />
           <PNav />
           {children}
+          <PFooter />
         </CompanyProvider>
       </body>
     </html>

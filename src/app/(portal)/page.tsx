@@ -26,7 +26,7 @@ export default async function Home() {
   return (
     <main>
       <PCarousel />
-      <BreadMenu />
+      {/* <BreadMenu /> */}
       <Products />
     </main>
   );
