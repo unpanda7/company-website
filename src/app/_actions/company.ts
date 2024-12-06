@@ -1,7 +1,7 @@
 "use server"
 
 import { prisma } from "@/lib/prisma";
-import { companySchema, productSchema, productWithoutCategoriesSchema } from "@/lib/validations/company";
+import { companySchema, productSchema, productWithoutCategoriesSchema, successCaseSchema, recruitmentSchema } from "@/lib/validations/company";
 import { cateSchema } from "@/lib/validations/cate";
 export async function getCompanyInfo() {
   try {
@@ -109,4 +109,16 @@ export async function getProductDetail(id: string) {
     }
   })
   return productSchema.parse(product)
+}
+
+// 获取成功案例
+export async function getSuccessCaseList() {
+  const successCaseList = await prisma.successCase.findMany()
+  return successCaseSchema.array().parse(successCaseList)
+}
+
+// 获取人才招聘
+export async function getRecruitmentList() {
+  const recruitmentList = await prisma.recruitment.findMany()
+  return recruitmentSchema.array().parse(recruitmentList)
 }

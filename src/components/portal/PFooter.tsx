@@ -1,11 +1,13 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import PCompanyInfo from './PCompanyInfo'
 
 const PFooter = () => {
   const router = useRouter()
+  const [year, setYear] = useState(new Date().getFullYear())
   return (
     <div className='w-full bg-[#262626]'>
       <div className='bg-[#2E2E2E] py-4'>
@@ -41,16 +43,14 @@ const PFooter = () => {
             {/* 联系我们 */}
             <div className='flex flex-col flex-1'>
               <div className='text-white text-lg font-bold mb-2'>联系我们</div>
-              <div className='text-white text-sm'>
-
-              </div>
+              <PCompanyInfo color='#fff' />
             </div>
           </div>
         </div>
       </div>
       <div className='container mx-auto text-white'>
         <div className='flex flex-col items-center'>
-          <p>Copyright © 2024 深圳市中科智联科技有限公司 版权所有</p>
+          <p>Copyright © {year} 深圳市中科智联科技有限公司 版权所有</p>
         </div>
       </div>
     </div>

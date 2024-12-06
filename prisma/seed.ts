@@ -125,13 +125,43 @@ async function main() {
   // })
 
   // 为所有存在的产品添加 imageUrl
-  const categories = await prisma.category.findMany()
-  await Promise.all(categories.map(async (category) => {
-    await prisma.category.update({
-      where: { id: category.id },
-      data: { imageUrl: faker.image.urlLoremFlickr({ height: 600, width: 400 }) },
-    })
-  }))
+  // const categories = await prisma.category.findMany()
+  // await Promise.all(categories.map(async (category) => {
+  //   await prisma.category.update({
+  //     where: { id: category.id },
+  //     data: { imageUrl: faker.image.urlLoremFlickr({ height: 600, width: 400 }) },
+  //   })
+  // }))
+
+  // 添加成功案例
+  // await prisma.successCase.createMany({
+  //   data: Array.from({ length: 5 }, () => ({
+  //     name: faker.company.name(),
+  //     description: faker.company.catchPhrase(),
+  //     imageUrl: faker.image.urlLoremFlickr({ height: 400, width: 600 }),
+  //   })),
+  // })
+
+
+
+  await prisma.recruitment.createMany({
+    data: Array.from({ length: 5 }, () => ({
+      title: faker.company.catchPhrase(),
+      content: `
+        <h3>${faker.company.catchPhrase()}</h3>
+        <p>${faker.lorem.paragraph()}</p>
+        <h4>岗位要求：</h4>
+        <ul>
+          ${Array.from({ length: 5 }, () => `<li>${faker.lorem.sentence()}</li>`).join('\n')}
+        </ul>
+        <h4>工作职责：</h4>
+        <ul>
+          ${Array.from({ length: 4 }, () => `<li>${faker.lorem.sentence()}</li>`).join('\n')}
+        </ul>
+        <p>${faker.lorem.paragraphs(2, '<br/><br/>')}</p>
+      `.trim(),
+    })),
+  })
 }
 
 main().catch((e) => {

@@ -52,18 +52,25 @@ export default function PNav() {
   }
 
   const isActive = (item: typeof navList[0]) => {
-    return item.matchPaths.includes(pathname)
+    // return item.matchPaths.includes(pathname)
+    return pathname.startsWith(item.href)
   }
 
   return (
-    <div className='w-full bg-black container mx-auto'>
+    <div className='w-full container mx-auto'>
       <div className='flex justify-between items-center'>
         <div className='flex items-center'>
-          {navList.map((item) => (
+        {navList.map((item) => (
             <Button
               key={item.label}
               variant='link'
-              className={`text-white ${isActive(item) ? 'bg-gray-800' : ''}`}
+              className={`
+                text-secondary-foreground
+                ${isActive(item)
+                  ? 'font-semibold'
+                  : 'text-secondary-foreground/80'
+                }
+              `}
               onClick={() => jumpTo(item.href)}
             >
               {item.label}

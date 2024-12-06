@@ -66,10 +66,14 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CompanyProvider initialCompanyInfo={companyInfo} cateList={cateList}>
+          <div className="flex flex-col min-h-screen">
           <PHeader />
           <PNav />
-          {children}
+          <main className="flex-1 min-h-[calc(100vh-200px)]">
+            {children}
+          </main>
           <PFooter />
+          </div>
         </CompanyProvider>
       </body>
     </html>

@@ -28,6 +28,8 @@ model CompanyInfo {
   fullDesc    String?  @db.Text  // 详细描述
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  technicalSupport String? @db.Text  // 技术支持
+  bannerBgUrl String? // 轮播图背景图
 }
 
 model Carousel {
@@ -71,4 +73,24 @@ model ProductCategory {
   @@id([productId, categoryId])  // 复合主键
   @@index([categoryId])
   @@index([productId])
+}
+
+
+model SuccessCase {
+  id        String   @id @default(cuid())
+  name      String
+  sort      Int      @default(0)
+  imageUrl  String?
+  description String? @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 人才招聘
+model Recruitment {
+  id        String   @id @default(cuid())
+  title      String
+  content String? @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

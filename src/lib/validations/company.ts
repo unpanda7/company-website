@@ -44,3 +44,26 @@ export type Product = z.infer<typeof productSchema>
 /** 剔除 categories 字段 */
 export const productWithoutCategoriesSchema = productSchema.omit({ categories: true })
 export type ProductWithoutCategories = z.infer<typeof productWithoutCategoriesSchema>
+
+
+export const successCaseSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  imageUrl: z.string().nullable(),
+  sort: z.number().default(0),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+})
+
+export type SuccessCase = z.infer<typeof successCaseSchema>
+
+
+export const recruitmentSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  content: z.string().nullable(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+})
+
+export type Recruitment = z.infer<typeof recruitmentSchema>

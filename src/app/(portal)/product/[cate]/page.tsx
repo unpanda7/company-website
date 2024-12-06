@@ -43,11 +43,11 @@ const CateDetail = ({ params }: CateDetailProps) => {
 
     return (
         <div>
-            <div className="flex flex-col">
+            <div className="flex flex-col min-h-[600px]">
                 {productList.map((product) => (
                     <div
                         key={product.id}
-                        className="flex w-full mb-2 border p-4 cursor-pointer hover:border-blue-400 transition-all duration-300"
+                        className="flex w-full mb-2 border p-4 cursor-pointer rounded-md hover:border-blue-400 transition-all duration-300"
                         onClick={() => jumpDetail(product.id)}
                     >
                         <div className="w-24 h-24 bg-blue-400 relative">
@@ -57,7 +57,7 @@ const CateDetail = ({ params }: CateDetailProps) => {
                                 fill
                                 priority
                                 sizes="(max-width: 768px) 100vw, 25vw"
-                                className="object-cover"
+                                className="object-cover rounded-md"
                             />
                         </div>
                         <div className="flex flex-col flex-1 p-2 relative">

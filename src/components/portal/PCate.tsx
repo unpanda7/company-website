@@ -26,13 +26,13 @@ const PCate = () => {
 
     return (
         <div className="flex flex-col max-h-[80vh] overflow-y-auto">
-            <div className="bg-red-600 text-white text-center py-2">产品中心</div>
+            <div className="bg-primary text-primary-foreground text-white text-center py-2">产品中心</div>
             <div className="flex flex-col w-full">
                 {cateList.map((item) => (
                     <Button
                         key={item.id}
                         variant="link"
-                        className={`text-black hover:bg-gray-100 ${isActive(item.id) ? 'bg-gray-100 font-bold' : ''}`}
+                        className={`text-accent-foreground hover:bg-muted ${isActive(item.id) ? 'bg-secondary font-bold' : ''}`}
                         onClick={() => jumpTo(item.id)}
                     >
                         {item.name}
