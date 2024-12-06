@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CompanyInfo {
+  id          String   @id @default(cuid())
+  name        String   // 公司名称
+  logo        String?  // logo URL
+  phone       String?  // 联系电话
+  fax         String?  // 传真
+  email       String?  // 邮箱
+  address     String?  // 地址
+  latitude    Float?   // 纬度
+  longitude   Float?   // 经度
+  wechatQR    String?  // 微信二维码 URL
+  shortDesc   String?  // 简短描述
+  fullDesc    String?  @db.Text  // 详细描述
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Carousel {
+  id        String   @id @default(cuid())
+  imageUrl  String
+  link      String?
+  sort      Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  description String?
+  order       Int      @default(0)
+  imageUrl    String?
+  products    ProductCategory[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Product {
+  id          String         @id @default(cuid())
+  name        String
+  description String?        @db.Text
+  imageUrl    String?
+  price       Float?
+  categories  ProductCategory[]  // 改为通过中间表关联
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model ProductCategory {
+  product     Product    @relation(fields: [productId], references: [id])
+  productId   String
+  category    Category   @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  createdAt   DateTime   @default(now())
+
+  @@id([productId, categoryId])  // 复合主键
+  @@index([categoryId])
+  @@index([productId])
+}

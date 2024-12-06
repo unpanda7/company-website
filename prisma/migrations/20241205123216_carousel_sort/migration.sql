@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Carousel" ADD COLUMN     "sort" INTEGER NOT NULL DEFAULT 0;
