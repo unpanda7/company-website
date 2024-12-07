@@ -4,6 +4,9 @@ const withNextIntl = createNextIntlPlugin()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    PORT: process.env.PORT,
+  },
   images: {
     remotePatterns: [
       {

@@ -144,23 +144,38 @@ async function main() {
 
 
 
-  await prisma.recruitment.createMany({
-    data: Array.from({ length: 5 }, () => ({
-      title: faker.company.catchPhrase(),
-      content: `
-        <h3>${faker.company.catchPhrase()}</h3>
-        <p>${faker.lorem.paragraph()}</p>
-        <h4>岗位要求：</h4>
-        <ul>
-          ${Array.from({ length: 5 }, () => `<li>${faker.lorem.sentence()}</li>`).join('\n')}
-        </ul>
-        <h4>工作职责：</h4>
-        <ul>
-          ${Array.from({ length: 4 }, () => `<li>${faker.lorem.sentence()}</li>`).join('\n')}
-        </ul>
-        <p>${faker.lorem.paragraphs(2, '<br/><br/>')}</p>
-      `.trim(),
-    })),
+  // await prisma.recruitment.createMany({
+  //   data: Array.from({ length: 5 }, () => ({
+  //     title: faker.company.catchPhrase(),
+  //     content: `
+  //       <h3>${faker.company.catchPhrase()}</h3>
+  //       <p>${faker.lorem.paragraph()}</p>
+  //       <h4>岗位要求：</h4>
+  //       <ul>
+  //         ${Array.from({ length: 5 }, () => `<li>${faker.lorem.sentence()}</li>`).join('\n')}
+  //       </ul>
+  //       <h4>工作职责：</h4>
+  //       <ul>
+  //         ${Array.from({ length: 4 }, () => `<li>${faker.lorem.sentence()}</li>`).join('\n')}
+  //       </ul>
+  //       <p>${faker.lorem.paragraphs(2, '<br/><br/>')}</p>
+  //     `.trim(),
+  //   })),
+  // })
+
+  // create user and related profile
+  const user = await prisma.user.create({
+    data: {
+      username: "admin",
+      password: "123456",
+    },
+  })
+
+  await prisma.userProfile.create({
+    data: {
+      userId: user.id,
+      avatar: faker.image.avatar(),
+    }
   })
 }
 
