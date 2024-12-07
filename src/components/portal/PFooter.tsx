@@ -3,9 +3,11 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { useTranslations } from 'next-intl'
 import PCompanyInfo from './PCompanyInfo'
 
 const PFooter = () => {
+  const t = useTranslations()
   const router = useRouter()
   const [year, setYear] = useState(new Date().getFullYear())
   return (
@@ -15,34 +17,34 @@ const PFooter = () => {
           <div className='flex'>
             {/* 走进我们 */}
             <div className='flex flex-col flex-1'>
-              <div className='text-white text-lg font-bold mb-2'>走进我们</div>
+              <div className='text-white text-lg font-bold mb-2'>{t('footer.aboutUs')}</div>
               <div className='text-white text-sm'>
-                <Button variant='link' className='text-white' onClick={() => router.push('/about')}>支持</Button>
+                <Button variant='link' className='text-white' onClick={() => router.push('/about')}>{t('footer.support')}</Button>
               </div>
               <div className='text-white text-sm'>
-                <Button variant='link' className='text-white' onClick={() => router.push('/about')}>技术支持</Button>
+                <Button variant='link' className='text-white' onClick={() => router.push('/about')}>{t('footer.technicalSupport')}</Button>
               </div>
             </div>
 
             {/* 产品中心 */}
             <div className='flex flex-col flex-1'>
-              <div className='text-white text-lg font-bold mb-2'>产品中心</div>
+              <div className='text-white text-lg font-bold mb-2'>{t('footer.products')}</div>
               <div className='text-white text-sm'>
-                <Button variant='link' className='text-white' onClick={() => router.push('/product')}>产品中心</Button>
+                <Button variant='link' className='text-white' onClick={() => router.push('/product')}>{t('footer.products')}</Button>
               </div>
             </div>
 
             {/* 人力资源 */}
             <div className='flex flex-col flex-1'>
-              <div className='text-white text-lg font-bold mb-2'>人力资源</div>
+              <div className='text-white text-lg font-bold mb-2'>{t('footer.hr')}</div>
               <div className='text-white text-sm'>
-                <Button variant='link' className='text-white' onClick={() => router.push('/about')}>招聘信息</Button>
+                <Button variant='link' className='text-white' onClick={() => router.push('/about')}>{t('footer.recruitment')}</Button>
               </div>
             </div>
 
             {/* 联系我们 */}
             <div className='flex flex-col flex-1'>
-              <div className='text-white text-lg font-bold mb-2'>联系我们</div>
+              <div className='text-white text-lg font-bold mb-2'>{t('footer.contact')}</div>
               <PCompanyInfo color='#fff' />
             </div>
           </div>
@@ -50,7 +52,7 @@ const PFooter = () => {
       </div>
       <div className='container mx-auto text-white'>
         <div className='flex flex-col items-center'>
-          <p>Copyright © {year} 深圳市中科智联科技有限公司 版权所有</p>
+          <p>{t('footer.copyright', { year })}</p>
         </div>
       </div>
     </div>

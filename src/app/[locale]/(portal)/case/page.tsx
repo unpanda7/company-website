@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { getSuccessCaseList } from '@/app/_actions/company'
 import { SuccessCase } from '@/lib/validations/company'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 const CasePage = () => {
+    const t = useTranslations()
     const [successCaseList, setSuccessCaseList] = useState<SuccessCase[]>([])
 
     const getSuccessCaseData = async () => {
@@ -18,7 +20,7 @@ const CasePage = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <div className="mb-2 font-bold text-2xl">成功案例</div>
+            <div className="mb-2 font-bold text-2xl">{t('case.caseCenter')}</div>
             <div className="flex flex-wrap gap-4">
                 {successCaseList.map((successCase) => (
                     <div key={successCase.id}>

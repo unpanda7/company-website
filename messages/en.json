@@ -1,0 +1,49 @@
+{
+  "common": {
+    "search": "Search",
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "cases": "Success Cases",
+    "hr": "HR",
+    "contact": "Contact"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "support": "Support",
+    "technicalSupport": "Technical Support",
+    "products": "Products",
+    "hr": "Human Resources",
+    "recruitment": "Recruitment",
+    "contact": "Contact Us",
+    "copyright": "Copyright © {year} Shenzhen Zhongke Zhilian Technology Co., Ltd. All Rights Reserved"
+  },
+  "company": {
+    "phone": "Phone",
+    "fax": "Fax",
+    "email": "Email",
+    "address": "Address"
+  },
+  "about": {
+    "aboutUs": "About Us"
+  },
+  "product": {
+    "productCenter": "Product Center"
+  },
+  "hr": {
+    "recruitment": "Recruitment",
+    "jobList": "Job List",
+    "detail": "A team full of vitality",
+    "contact": "Contact Us"
+  },
+  "case": {
+    "caseCenter": "Case Center"
+  }
+}

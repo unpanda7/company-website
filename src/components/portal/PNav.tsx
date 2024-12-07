@@ -1,46 +1,48 @@
 'use client'
 import React from 'react'
 import { Button } from '../ui/button'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter, usePathname } from '@/i18n/routing'
 import { useCateStore } from '@/store/module/company'
+import { useTranslations } from 'next-intl'
 
-const navList = [
-  {
-    label: '首页',
-    href: '/',
-    matchPaths: ['/']
-  },
-  {
-    label: '关于公司',
-    href: '/about',
-    matchPaths: ['/about']
-  },
-  {
-    label: '产品中心',
-    href: '/product',
-    matchPaths: ['/product'] // 当在首页且有 defaultCate 时也匹配
-  },
-  {
-    label: '成功案例',
-    href: '/case',
-    matchPaths: ['/case']
-  },
-  {
-    label: '人力资源',
-    href: '/hr',
-    matchPaths: ['/hr']
-  },
-  {
-    label: '联系我们',
-    href: '/contact',
-    matchPaths: ['/contact']
-  }
-]
-
-export default function PNav() {
+const PNav = () => {
+  const t = useTranslations()
   const router = useRouter()
   const pathname = usePathname()
   const cateList = useCateStore((state) => state.cateList)
+
+  const navList = [
+    {
+      label: t('nav.home'),
+      href: '/',
+      matchPaths: ['/']
+    },
+    {
+      label: t('nav.about'),
+      href: '/about',
+      matchPaths: ['/about']
+    },
+    {
+      label: t('nav.products'),
+      href: '/product',
+      matchPaths: ['/product']
+    },
+    {
+      label: t('nav.cases'),
+      href: '/case',
+      matchPaths: ['/case']
+    },
+    {
+      label: t('nav.hr'),
+      href: '/hr',
+      matchPaths: ['/hr']
+    },
+    {
+      label: t('nav.contact'),
+      href: '/contact',
+      matchPaths: ['/contact']
+    }
+  ]
 
   const jumpTo = (href: string) => {
     // 产品中心默认第一个产品
@@ -81,3 +83,5 @@ export default function PNav() {
     </div>
   )
 }
+
+export default PNav

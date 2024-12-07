@@ -1,0 +1,49 @@
+{
+  "common": {
+    "search": "搜索",
+    "theme": {
+      "light": "浅色",
+      "dark": "深色",
+      "system": "系统"
+    }
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于公司",
+    "products": "产品中心",
+    "cases": "成功案例",
+    "hr": "人力资源",
+    "contact": "联系我们"
+  },
+  "footer": {
+    "aboutUs": "走进我们",
+    "support": "支持",
+    "technicalSupport": "技术支持",
+    "products": "产品中心",
+    "hr": "人力资源",
+    "recruitment": "招聘信息",
+    "contact": "联系我们",
+    "copyright": "Copyright © {year} 深圳市中科智联科技有限公司 版权所有"
+  },
+  "company": {
+    "phone": "电话",
+    "fax": "传真",
+    "email": "邮箱",
+    "address": "地址"
+  },
+  "about": {
+    "aboutUs": "关于我们"
+  },
+  "product": {
+    "productCenter": "产品中心"
+  },
+  "hr": {
+    "recruitment": "招聘信息",
+    "jobList": "职位列表",
+    "detail": "一只充满活力的队伍",
+    "contact": "联系我们"
+  },
+  "case": {
+    "caseCenter": "成功案例"
+  }
+}

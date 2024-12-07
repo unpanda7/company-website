@@ -1,3 +1,7 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin()
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -11,7 +15,16 @@ const nextConfig = {
         hostname: 'loremflickr.com'
       }
     ]
+  },
+  redirects: async () => {
+    return [
+      {
+        source: '/',
+        destination: '/zh-CN',
+        permanent: true
+      }
+    ]
   }
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

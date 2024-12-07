@@ -3,6 +3,7 @@
 import React from 'react'
 import { useCompanyStore } from '@/store/module/company'
 import { cn } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 interface CompanyInfoProps {
   className?: string
   /** 字体大小 */
@@ -12,29 +13,30 @@ interface CompanyInfoProps {
 }
 
 const CompanyInfo = ({ className, fontSize, color }: CompanyInfoProps) => {
+  const t = useTranslations()
   const companyInfo = useCompanyStore((state) => state.companyInfo)
   fontSize = fontSize || '14px'
   color = color || '#000'
   return (
     <div className={cn('container mx-auto', className)} style={{ fontSize, color }}>
       {
-        companyInfo?.phone && <div>手机：{companyInfo?.phone}</div>
+        companyInfo?.phone && <div>{t('company.phone')}: {companyInfo?.phone}</div>
       }
       {/* 电话 */}
       {
-        companyInfo?.phone && <div>电话：{companyInfo?.phone}</div>
+        companyInfo?.phone && <div>{t('company.phone')}: {companyInfo?.phone}</div>
       }
       {/* 传真 */}
       {
-        companyInfo?.fax && <div>传真：{companyInfo?.fax}</div>
+        companyInfo?.fax && <div>{t('company.fax')}: {companyInfo?.fax}</div>
       }
       {/* 邮箱 */}
       {
-        companyInfo?.email && <div>邮箱：{companyInfo?.email}</div>
+        companyInfo?.email && <div>{t('company.email')}: {companyInfo?.email}</div>
       }
       {/* 地址 */}
       {
-        companyInfo?.address && <div>地址：{companyInfo?.address}</div>
+        companyInfo?.address && <div>{t('company.address')}: {companyInfo?.address}</div>
       }
     </div>
   )

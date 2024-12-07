@@ -6,6 +6,10 @@ import PNav from "@/components/portal/PNav";
 import CompanyProvider from "@/components/providers/CompanyProvider";
 import { getCompanyInfo, getCateList } from "@/app/_actions/company";
 import PFooter from "@/components/portal/PFooter";
+import { ThemeProvider } from "next-themes";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages} from 'next-intl/server'
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -24,11 +28,15 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params: { locale }
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
   let companyInfo;
   let cateList;
+  const messages = await getMessages();
+
   try {
     companyInfo = await getCompanyInfo();
     cateList = await getCateList();
@@ -56,25 +64,31 @@ export default async function RootLayout({
         id: '',
         name: '未分类',
         sort: 0,
+        imageUrl: null
       },
     ];
   }
 
+
   return (
-    <html lang="en">
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CompanyProvider initialCompanyInfo={companyInfo} cateList={cateList}>
-          <div className="flex flex-col min-h-screen">
-          <PHeader />
-          <PNav />
-          <main className="flex-1 min-h-[calc(100vh-200px)]">
-            {children}
-          </main>
-          <PFooter />
-          </div>
-        </CompanyProvider>
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <ThemeProvider enableColorScheme disableTransitionOnChange>
+            <CompanyProvider initialCompanyInfo={companyInfo} cateList={cateList}>
+              <div className="flex flex-col min-h-screen">
+                <PHeader />
+                <PNav />
+                <main className="flex-1 min-h-[calc(100vh-200px)]">
+                  {children}
+                </main>
+                <PFooter />
+              </div>
+            </CompanyProvider>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

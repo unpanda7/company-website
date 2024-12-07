@@ -33,3 +33,14 @@
   height: var(--slide-height);
   user-select: none;
 }
+
+:root {
+  /* Your default theme */
+  --background: white;
+  --foreground: black;
+}
+
+[data-theme='dark'] {
+  --background: black;
+  --foreground: white;
+}

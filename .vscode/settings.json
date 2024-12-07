@@ -1,0 +1,8 @@
+{
+  "i18n-ally.localesPaths": [
+    "messages",
+    "src/i18n"
+  ],
+  "i18n-ally.sourceLanguage": "zh-CN",
+  "i18n-ally.displayLanguage": "zh-CN"
+}

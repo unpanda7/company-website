@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Recruitment } from '@/lib/validations/company'
 import { cn } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 
 interface JobCardProps {
   title: string
@@ -14,6 +15,7 @@ interface JobCardProps {
 }
 
 const JobCard = ({ title, description, className }: JobCardProps) => {
+  const t = useTranslations()
   return (
     <Card className={cn("p-6 max-h-[400px] overflow-y-auto", className)}>
       <h3 className="text-lg font-bold mb-4">{title}</h3>
@@ -21,12 +23,13 @@ const JobCard = ({ title, description, className }: JobCardProps) => {
         className="prose prose-sm max-w-none mb-6 text-gray-500 text-sm"
         dangerouslySetInnerHTML={{ __html: description }}
       />
-      <Button className="w-40 mx-auto block">联系我们</Button>
+      <Button className="w-40 mx-auto block">{t('hr.contact')}</Button>
     </Card>
   )
 }
 
 const HrPage = () => {
+  const t = useTranslations()
   const [jobList, setJobList] = useState<Recruitment[]>([])
 
   const getCompanyInfoData = async () => {
@@ -41,8 +44,8 @@ const HrPage = () => {
   return (
     <div className='container mx-auto p-4'>
       <div className='text-center mx-auto mb-4'>
-        <div className='text-2xl font-bold'>人才招聘</div>
-        <div className='text-sm text-gray-500'>一只充满活力的队伍</div>
+        <div className='text-2xl font-bold'>{t('hr.recruitment')}</div>
+        <div className='text-sm text-gray-500'>{t('hr.detail')}</div>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
         {jobList.map((job) => (
