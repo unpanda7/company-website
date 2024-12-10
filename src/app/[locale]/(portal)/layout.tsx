@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../../globals.css";
 import PHeader from "@/components/PHeader";
 import PNav from "@/components/portal/PNav";
 import CompanyProvider from "@/components/providers/CompanyProvider";

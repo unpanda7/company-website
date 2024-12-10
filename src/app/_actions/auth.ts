@@ -1,6 +1,6 @@
 "use server"
 import { prisma } from "@/lib/prisma"
-import { loginSchema, Login } from "@/lib/validations/auth"
+import { loginSchema } from "@/lib/validations/auth"
 import { getSession } from "@/lib/session"
 
 export async function login(data: FormData) {

@@ -16,7 +16,7 @@ const Logout = () => {
 
 
   return (
-    <Button onClick={() => handleLogout()}>退出登录</Button>
+    <Button size={'sm'} onClick={() => handleLogout()}>退出登录</Button>
   )
 }
 

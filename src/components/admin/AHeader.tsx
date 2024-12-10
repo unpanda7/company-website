@@ -1,11 +1,14 @@
 'use client'
 import React from 'react'
 import Logout from './logout'
-
+import { SidebarTrigger } from '@/components/ui/sidebar'
 const AHeader = () => {
+
   return (
-    <div className='flex justify-between items-center p-4'>
-      <h1 className='text-2xl font-bold'>后台管理系统</h1>
+    <div className='flex justify-between items-center p-4 border-b border-gray-200'>
+      <div>
+        <SidebarTrigger />
+      </div>
       <Logout />
     </div>
   )
