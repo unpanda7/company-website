@@ -25,6 +25,11 @@ const items = [
         icon: Home,
     },
     {
+        title: '分类管理',
+        url: '/admin/cate',
+        icon: Store,
+    },
+    {
         title: '产品管理',
         url: '/admin/product',
         icon: Store,

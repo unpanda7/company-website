@@ -5,10 +5,6 @@ import { Carousel } from '@/lib/validations/carousel'
 
 export const Columns: ColumnDef<Carousel>[] = [
   {
-    accessorKey: 'id',
-    header: 'ID',
-  },
-  {
     accessorKey: 'imageUrl',
     header: '图片',
     cell: ({ row }) => {
