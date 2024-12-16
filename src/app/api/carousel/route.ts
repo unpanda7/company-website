@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
-
+import { carouselFormSchema } from '@/lib/validations/carousel'
 export const revalidate = 60;
 
 export async function GET() {
@@ -29,14 +29,36 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const body = await request.json()
-  console.log(body)
-  return NextResponse.json({ message: 'Carousel created successfully' }, { status: 200 })
+
+  const result = carouselFormSchema.safeParse(body)
+  if(!result.success) {
+    return NextResponse.json({ error: 'Invalid data', details: result.error.errors }, { status: 400 })
+  }
+
+  await prisma.carousel.create({
+    data: result.data
+  })
+
+  return NextResponse.json({ message: '创建成功' }, { status: 200 })
 }
 
 export async function PUT(request: Request) {
+
   const body = await request.json()
-  console.log(body)
-  return NextResponse.json({ message: 'Carousel updated successfully' }, { status: 200 })
+  const result = carouselFormSchema.safeParse(body)
+
+  if (!result.success) {
+    return NextResponse.json({ error: 'Invalid data', details: result.error.errors }, { status: 400 })
+  }
+
+  await prisma.carousel.update({
+    where: {
+      id: body.id
+    },
+    data: result.data
+  })
+
+  return NextResponse.json({ message: '更新成功' }, { status: 200 })
 }
 
 export async function DELETE(request: NextRequest) {
